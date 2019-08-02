@@ -1,6 +1,5 @@
 #!/bin/bash
-# Author: oldboy linux34 chentiangang
-# QQ群: 605799367
+# Author: oldboy linux34 chentiangang ivan
 # The shell that the user executes after logging in.
 
 SSHSTACK="$0"
@@ -41,13 +40,16 @@ reading(){
     elif [ "`grep -c "$HOST" $user_info`" == "0" ];then
       case $HOST in
           password) passwd ; continue ;;
-          clear) clear ;main ;;
+          clear) clear ; ;;
           exit) echo "退出登录" && exit ;;
           quit) echo "退出登录" && exit ;;
           *) printf "\033[31m      error: 不能连接${HOST}.\033[0m\n" && continue;;
       esac
     else
-      ssh -i /home/`whoami`/.ssh/id_dsa -p${ssh_port} -o StrictHostKeyChecking=no `whoami`@${HOST}
+      #ssh -i /home/`whoami`/.ssh/id_dsa -p${ssh_port} -o StrictHostKeyChecking=no `whoami`@${HOST}
+      #ssh -i /home/`whoami`/.ssh/id_dsa -p${ssh_port}  `whoami`@${HOST}
+      remote="`grep -i ${HOST} ${user_info}|awk '{print $1}'`"
+      ssh -p${ssh_port}  `whoami`@${remote}
     fi
   done
 }

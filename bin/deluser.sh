@@ -1,6 +1,5 @@
 #!/bin/bash
-# Author: oldboy linux34 chentiangang
-# QQ群: 605799367
+# Author: oldboy linux34 chentiangang ivan
 # Use this script to remove all users that have been added.
 
 SSHSTACK="$0"
@@ -23,7 +22,8 @@ if [ -f $user_info ];then
 
   # 在远端删除该用户
   for IP in $deluser_ip;do
-    ansible $IP -m shell -a "userdel $username"
+    #ansible $IP -m shell -a "userdel $username"
+    ssh -l root ${IP} "userdel $username"
     check
   done
 
