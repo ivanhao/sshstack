@@ -33,7 +33,8 @@ reading(){
     ((count=count+1))
     host_list
     stty erase ^?
-    read -p "`whoami` 选择主机 > " HOST
+    echo "当前用户: `whoami`"
+    read -p "选择主机 > " HOST
     if [ -z "$HOST" ];then
       # 如果输入空的字符串，则跳出本次循环
        reading

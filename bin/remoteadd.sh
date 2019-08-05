@@ -31,7 +31,7 @@ while true;do
     break
   fi
   if id $username &> /dev/null;then
-    PASS=randstr
+#    PASS=randstr
     # 创建用户密钥
     create_key
     # 在授权主机创建用户

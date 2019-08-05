@@ -36,9 +36,14 @@ add_user(){
 
 send_key(){
   echo "INFO: 发送公钥到远程主机" 
-  #ssh-copy-id -i ${user_key_file}.pub "-p ${ssh_port}  ${username}@${IP}" &>/dev/null
-  scp -P${ssh_port}  ${user_key_file}.pub root@${IP}:${user_home}/.ssh/authorized_keys &>/dev/null
-  check
+  if [ ${username} == "root" ];then
+      echo "username: "${username}
+      ssh-copy-id -i ${user_key_file}.pub -p ${ssh_port}  ${username}@${IP} &>/dev/null
+      check
+  else
+      scp -P${ssh_port}  ${user_key_file}.pub root@${IP}:${user_home}/.ssh/authorized_keys &>/dev/null
+      check
+  fi
   echo "INFO: 修改权限"
   ssh -l root ${IP} "chmod 600 ${user_home}/.ssh/authorized_keys && chown -R ${username}.${username} ${user_home}" &>/dev/null
   check
