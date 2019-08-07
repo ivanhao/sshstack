@@ -30,6 +30,7 @@ while true;do
     echo "主机已经存在!"
     break
   fi
+  stty erase ^?
   if id $username &> /dev/null;then
 #    PASS=randstr
     # 创建用户密钥

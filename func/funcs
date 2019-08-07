@@ -29,7 +29,7 @@ add_user(){
   else
     echo "INFO: 创建远端用户"
     #ansible $IP -m shell -a "useradd ${username} && mkdir -p ${user_home}/.ssh" &>/dev/null
-    ssh -l root ${IP} "useradd ${username} -G ssh -p ${PASS} && mkdir -p ${user_home}/.ssh" &>/dev/null
+    ssh -l root ${IP} "useradd ${username} -G ssh && mkdir -p ${user_home}/.ssh" &>/dev/null
     check
   fi
 }

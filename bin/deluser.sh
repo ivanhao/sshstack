@@ -28,7 +28,7 @@ if [ -f $user_info ];then
   done
 
   # 删除本地用户
-  userdel -r $username
+  deluser --remove-home $username
 
   # 删除用户信息文件
   rm -f $user_info
